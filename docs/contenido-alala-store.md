@@ -13,7 +13,7 @@ Este archivo reúne todo lo que tenemos para construir el portal y es la referen
 
 **Marcas usadas en este archivo**
 
-- ⚠️ Dato contradictorio o dudoso. Hay que confirmarlo con la clienta.
+- ⚠️ Dato contradictorio o dudoso. Hay que confirmarlo con Alalá Store.
 - ❌ Falta el contenido. No se debe inventar: en la página irá un texto temporal claramente marcado (regla del brief).
 
 ---
@@ -22,7 +22,7 @@ Este archivo reúne todo lo que tenemos para construir el portal y es la referen
 
 - **Qué es:** un portal informativo de talento humano para las empleadas y los empleados de Alalá Store. Reúne en un solo lugar la inducción, la dotación, el bienestar, el desempeño y la formación.
 - **Qué no es:** no es una tienda en línea. No hay catálogo, carrito ni pagos.
-- **Quién lo hace:** Kristian Kamilo Ferrin Rivera, como proyecto freelance. La clienta entrega todo el contenido.
+- **Quién lo hace:** Kristian Kamilo Ferrin Rivera desarrolla el portal. Alalá Store entrega todo el contenido.
 - **Solo contenido:** sin backend, base de datos ni login.
 
 ### Las 8 vistas y el estado de su contenido
@@ -874,7 +874,7 @@ Horario igual todos los días:
 
 ---
 
-## 10. Pendientes con la clienta
+## 10. Pendientes con Alalá Store
 
 ### Contenido que falta
 
