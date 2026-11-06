@@ -41,8 +41,8 @@ function Cabecera() {
   const [abierto, setAbierto] = useState(false)
   const { pathname } = useLocation()
 
-  // Al cambiar de página, el menú del celular se cierra solo.
-  useEffect(() => setAbierto(false), [pathname])
+  // Al elegir una página, el menú del celular se cierra solo.
+  const cerrar = () => setAbierto(false)
 
   return (
     <header className="cabecera">
@@ -50,10 +50,11 @@ function Cabecera() {
         Saltar al contenido
       </a>
       <div className="cabecera-fila">
-        <Link className="marca" to="/" aria-label="Alalá Store, ir al inicio">
+        <Link className="marca" to="/" aria-label="Alalá Store, ir al inicio" onClick={cerrar}>
           <img src="/img/logo.webp" alt="" width="116" height="64" />
         </Link>
-        <span className="marca-texto">Alalá Store</span>
+        {/* En la portada el nombre es el título principal; en las demás páginas lo es el título de cada una. */}
+        {pathname === '/' ? <h1 className="marca-texto">Alalá Store</h1> : <span className="marca-texto">Alalá Store</span>}
         <button
           className="menu-boton"
           type="button"
@@ -69,7 +70,7 @@ function Cabecera() {
         <ul>
           {menu.map((item) => (
             <li key={item.ruta}>
-              <NavLink to={item.ruta}>{item.titulo}</NavLink>
+              <NavLink to={item.ruta} onClick={cerrar}>{item.titulo}</NavLink>
             </li>
           ))}
         </ul>
@@ -104,8 +105,11 @@ function IrAlAncla() {
   const { hash, pathname } = useLocation()
   useEffect(() => {
     if (!hash) return
-    const destino = document.getElementById(decodeURIComponent(hash.slice(1)))
-    destino?.scrollIntoView()
+    // Espera a que el router termine de acomodar la página antes de bajar.
+    const espera = setTimeout(() => {
+      document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView({ behavior: 'auto' })
+    }, 50)
+    return () => clearTimeout(espera)
   }, [hash, pathname])
   return null
 }
