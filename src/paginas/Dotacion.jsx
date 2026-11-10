@@ -3,12 +3,13 @@ import { Pestanas, VisorBoton } from '../componentes/interaccion.jsx'
 import { Confirmar, Datos, ListaCorazon, Portada, Recuerda, Seccion, Temporal, Titulo } from '../componentes/piezas.jsx'
 import * as d from '../contenido/dotacion.js'
 
-function UsoIncorrecto({ items }) {
+/* Rejilla de prendas o elementos, cada uno con su foto recortada de la lámina. */
+function Elementos({ items, className = 'elementos' }) {
   return (
-    <ul className="uso-no">
-      {items.map(([img, texto, ancho = 140, alto = 140]) => (
-        <li key={texto}>
-          <img src={`/img/presentacion/${img}.webp`} alt="" width={ancho} height={alto} loading="lazy" />
+    <ul className={className}>
+      {items.map(([img, texto]) => (
+        <li key={img}>
+          <img src={d.recorte(img)} alt="" loading="lazy" />
           <span>{texto}</span>
         </li>
       ))}
@@ -16,28 +17,17 @@ function UsoIncorrecto({ items }) {
   )
 }
 
-/* Contenido de la pestaña de cada cargo. */
-function Cargo({ cargo }) {
-  const foto = <img className="foto-cargo" src={cargo.foto.src} alt={cargo.foto.alt} width={cargo.foto.ancho} height={cargo.foto.alto} loading="lazy" />
+/* Enlace que abre la lámina original en el visor. */
+function VerLamina({ n, titulo, texto = 'Ver lámina completa' }) {
+  return (
+    <VisorBoton src={d.lamina(n)} titulo={titulo}>
+      {texto}
+    </VisorBoton>
+  )
+}
 
-  // Cargos del manual anterior: solo lista de prendas y foto.
-  if (cargo.prendas) {
-    const prendas = cargo.prendas.map((p, i) =>
-      i === cargo.prendas.length - 1 && cargo.confirmarUltima ? <span key={p}>{p} <Confirmar>{cargo.confirmarUltima}</Confirmar></span> : p,
-    )
-    return (
-      <>
-        <div>
-          <ListaCorazon items={prendas} />
-          {cargo.lema && <p style={{ margin: '14px 0 0' }}><strong>{cargo.lema}</strong></p>}
-        </div>
-        {foto}
-      </>
-    )
-  }
-
-  // Cargos de la presentación: uso correcto, foto y uso incorrecto.
-  const noUsar = d.noUsarCargo.map((texto, i) => [`no-${i + 1}`, i === 0 && cargo.primerNoUsar ? cargo.primerNoUsar : texto])
+/* Cajero(a): no tiene lámina nueva, sigue con el formato de la presentación. */
+function CargoPresentacion({ cargo }) {
   return (
     <>
       <p className="entrada">{cargo.intro}</p>
@@ -49,7 +39,14 @@ function Cargo({ cargo }) {
         <img className="foto-persona" src={cargo.foto.src} alt={cargo.foto.alt} width={cargo.foto.ancho} height={cargo.foto.alto} loading="lazy" />
         <div>
           <h3 className="uso-titulo uso-mal">Uso incorrecto</h3>
-          <UsoIncorrecto items={noUsar} />
+          <ul className="uso-no">
+            {d.noUsarCajero.map((texto, i) => (
+              <li key={texto}>
+                <img src={`/img/presentacion/no-${i + 1}.webp`} alt="" width="140" height="140" loading="lazy" />
+                <span>{texto}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       <Recuerda titulo="Recuerda:">{cargo.recuerda}</Recuerda>
@@ -58,12 +55,57 @@ function Cargo({ cargo }) {
   )
 }
 
+/* Cargos con lámina nueva: prendas con foto, persona y enlace a la lámina. */
+function CargoLamina({ cargo }) {
+  return (
+    <>
+      <div>
+        {cargo.intro && <p className="entrada">{cargo.intro}</p>}
+        <Elementos items={cargo.prendas} />
+        {cargo.lema && <p style={{ margin: '16px 0 0' }}><strong>{cargo.lema}</strong></p>}
+        {cargo.recuerda && <Recuerda titulo="Recuerda:">{cargo.recuerda}</Recuerda>}
+        <p style={{ margin: '12px 0 0' }}><VerLamina n={cargo.lamina} titulo={cargo.titulo} /></p>
+      </div>
+      <img className="foto-persona" src={cargo.foto.src} alt={cargo.foto.alt} width={cargo.foto.ancho} height={cargo.foto.alto} loading="lazy" />
+    </>
+  )
+}
+
+function Proteccion({ area }) {
+  if (area.anterior) {
+    return (
+      <>
+        <p className="entrada">
+          Esta área no tiene lámina nueva. Estos elementos son del manual anterior. <Confirmar>Por confirmar</Confirmar>
+        </p>
+        <ListaCorazon items={area.anterior} />
+        <Recuerda titulo="Importante:">{area.recuerda}</Recuerda>
+      </>
+    )
+  }
+  return (
+    <>
+      {area.intro && <p className="entrada">{area.intro}</p>}
+      <Elementos items={area.items} />
+      <Recuerda titulo="Recuerda:">{area.recuerda}</Recuerda>
+      <p style={{ margin: '12px 0 0' }}><VerLamina n={area.lamina} titulo={`Elementos de protección: ${area.titulo}`} /></p>
+    </>
+  )
+}
+
 export default function Dotacion() {
-  const pestanas = d.cargos.map((cargo) => ({
+  const pestanasCargos = d.cargos.map((cargo) => ({
     id: cargo.id,
     titulo: cargo.titulo,
-    panelClassName: cargo.prendas ? 'tarjeta rejilla rejilla-2' : 'tarjeta cargo',
-    contenido: <Cargo cargo={cargo} />,
+    panelClassName: cargo.prendas ? 'tarjeta cargo-lamina' : 'tarjeta cargo',
+    contenido: cargo.prendas ? <CargoLamina cargo={cargo} /> : <CargoPresentacion cargo={cargo} />,
+  }))
+
+  const pestanasProteccion = d.proteccion.map((area) => ({
+    id: `epp-${area.id}`,
+    titulo: area.titulo,
+    panelClassName: 'tarjeta',
+    contenido: <Proteccion area={area} />,
   }))
 
   return (
@@ -72,78 +114,114 @@ export default function Dotacion() {
         etiqueta="Para todos los colaboradores"
         titulo="Manual de"
         destacado="dotación"
-        imagen={{ src: '/img/presentacion/equipo.webp', alt: 'Tres colaboradores de Alalá Store con polo blanco, pantalón azul oscuro y carné; una con delantal negro', ancho: 710, alto: 840 }}
+        imagen={{ src: d.recorte('personas/equipo'), alt: 'Cinco colaboradores de Alalá con polo blanco con logo, jean azul y tenis blancos', ancho: 640, alto: 607 }}
       >
-        <p className="entrada">Lineamientos para el uso, cuidado y presentación de nuestros uniformes y elementos de protección personal.</p>
-        <p className="entrada"><strong>¡Juntos llevamos nuestro estilo más lejos!</strong></p>
+        <p className="entrada">{d.introduccion}</p>
+        <p className="entrada"><strong>Juntos vestimos la esencia de Alalá.</strong></p>
         <div className="botones">
-          <VisorBoton className="boton boton-sec" src="/img/laminas/lamina-11.webp" titulo="Manual de dotación anterior: las 24 láminas">
-            Ver manual anterior
+          <a className="boton" href="#cargos">Ver la dotación de mi cargo</a>
+          <VisorBoton className="boton boton-sec" src={d.lamina('01')} titulo="Manual de dotación">
+            Ver lámina del manual
           </VisorBoton>
         </div>
       </Portada>
 
       <Seccion>
-        <Titulo>Objetivos del manual</Titulo>
-        <div className="rejilla rejilla-2">
-          <ListaCorazon items={d.objetivos} />
-          <p style={{ margin: 0 }}><strong>Aplica para</strong> {d.alcance}</p>
+        <div className="duo">
+          <div>
+            <Titulo>¿Qué es la dotación?</Titulo>
+            <p className="entrada">{d.queEs}</p>
+            <h3 style={{ margin: '18px 0 10px' }}>Tipos de dotación</h3>
+            <ListaCorazon items={d.tipos} />
+          </div>
+          <img className="panel-foto" src={d.recorte('personas/grupo-objetivo')} alt="Cinco colaboradores sonrientes con polo blanco de Alalá y jean azul" width="640" height="480" loading="lazy" />
         </div>
+        <Recuerda titulo="Recuerda:">
+          usa siempre tu dotación completa, manténla en buen estado y cuídala, porque es parte de tu trabajo y tu seguridad.
+        </Recuerda>
+        <p style={{ margin: '12px 0 0' }}><VerLamina n="04" titulo="Introducción a la dotación" /></p>
+      </Seccion>
+
+      <Seccion suave>
+        <Titulo>Objetivo y alcance</Titulo>
+        <Datos items={d.objetivoYAlcance} />
+        <div className="rejilla rejilla-2" style={{ marginTop: 24 }}>
+          <article className="tarjeta">
+            <h3 style={{ marginBottom: 10 }}>Funciones de la dotación</h3>
+            <ListaCorazon items={d.funciones} />
+          </article>
+          <article className="tarjeta">
+            <h3 style={{ marginBottom: 10 }}>Importante</h3>
+            <ListaCorazon items={d.importante} />
+          </article>
+        </div>
+        <p style={{ margin: '18px 0 0' }}><strong>Tu imagen también hace parte de nuestro equipo.</strong></p>
+        <p style={{ margin: '4px 0 0' }}><VerLamina n="05" titulo="Objetivo y alcance" /></p>
       </Seccion>
 
       <Seccion>
-        <Titulo>Códigos de vestuario</Titulo>
-        <p className="entrada">Nuestro código de vestuario refleja la imagen profesional, ordenada y coherente de Alalá Store.</p>
-        <div className="codigos">
+        <Titulo>Prendas por área</Titulo>
+        <div className="rejilla rejilla-fotos">
+          {d.prendasPorArea.map(([img, area, prendas]) => (
+            <article className="tarjeta tarjeta-foto" key={img}>
+              <img src={d.recorte(`areas/${img}`)} alt="" loading="lazy" />
+              <h3>{area}</h3>
+              <p>{prendas}</p>
+            </article>
+          ))}
+        </div>
+        <h3 style={{ margin: '28px 0 10px' }}>Recomendaciones</h3>
+        <ListaCorazon items={d.recomendaciones} />
+        <Recuerda titulo="Recuerda:">
+          tu presentación y el uso adecuado de la dotación reflejan tu compromiso con Alalá.
+        </Recuerda>
+        <p style={{ margin: '12px 0 0' }}><VerLamina n="06" titulo="Dotación y presentación" /></p>
+      </Seccion>
+
+      <Seccion suave>
+        <div className="duo">
           <div>
-            <h3 className="uso-titulo uso-ok">Uso correcto</h3>
-            <div className="rejilla codigos-ok">
-              {d.usoCorrecto.map(([img, titulo, texto, ancho, alto]) => (
-                <article className="tarjeta tarjeta-foto" key={img}>
-                  <img src={`/img/presentacion/${img}.webp`} alt="" width={ancho} height={alto} loading="lazy" />
-                  <h4>{titulo}</h4>
-                  <p>{texto}</p>
-                </article>
-              ))}
+            <Titulo>Código de vestuario</Titulo>
+            <p className="entrada">{d.vestuario.intro}</p>
+            <h3 className="uso-titulo uso-ok" style={{ marginTop: 18 }}>¿Cómo debe ser?</h3>
+            <ListaCorazon items={d.vestuario.comoDebeSer} />
+          </div>
+          <img className="panel-foto" src={d.recorte('personas/vestuario')} alt="Tres colaboradoras con polo blanco de Alalá, jean azul y cabello bien peinado" width="599" height="518" loading="lazy" />
+        </div>
+        <div className="vestuario-rejilla">
+          <article className="tarjeta imagen-adecuada">
+            <img src={d.recorte('vestuario/adecuada')} alt="Polo blanco de Alalá, jean azul y zapatos blancos cerrados" width="200" height="295" loading="lazy" />
+            <div>
+              <h3 className="uso-titulo uso-ok">Imagen adecuada</h3>
+              <ListaCorazon items={d.vestuario.imagenAdecuada} />
             </div>
-          </div>
+          </article>
           <div>
-            <h3 className="uso-titulo uso-mal">Uso incorrecto</h3>
-            <UsoIncorrecto items={d.usoIncorrecto} />
+            <h3 className="uso-titulo uso-mal">Evita esto</h3>
+            <Elementos items={d.vestuario.evita.map(([img, texto]) => [`vestuario/${img}`, texto])} className="elementos elementos-no" />
           </div>
         </div>
-        <h3 style={{ marginTop: 24 }}>Reglas generales</h3>
-        <ListaCorazon items={d.reglasGenerales} style={{ marginTop: 10 }} />
+        <Recuerda titulo="Recuerda:">tu imagen también habla de nuestra empresa. ¡Viste con orgullo Alalá!</Recuerda>
+        <p style={{ margin: '12px 0 0' }}><VerLamina n="08" titulo="Código de vestuario" /></p>
+      </Seccion>
+
+      <Seccion id="cargos">
+        <Titulo>Dotación por cargo</Titulo>
+        <Pestanas items={pestanasCargos} etiqueta="Cargos" />
       </Seccion>
 
       <Seccion suave>
-        <Titulo>Dotación por cargo</Titulo>
-        <Pestanas items={pestanas} etiqueta="Cargos" />
+        <Titulo>Elementos de protección por área</Titulo>
+        <Pestanas items={pestanasProteccion} etiqueta="Áreas" />
       </Seccion>
 
       <Seccion>
-        <Titulo>Elementos de protección por área</Titulo>
-        <div className="tabla-marco">
-          <table>
-            <thead>
-              <tr><th scope="col">Área</th><th scope="col">Elementos</th><th scope="col">Importante</th></tr>
-            </thead>
-            <tbody>
-              {d.eppPorArea.map(([area, elementos, nota]) => (
-                <tr key={area}><th scope="row">{area}</th><td>{elementos}</td><td>{nota}</td></tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Seccion>
-
-      <Seccion suave>
         <Titulo>Cuidados del uniforme</Titulo>
         <ListaCorazon items={d.cuidados} />
         <p style={{ margin: '14px 0 0' }}>El buen cuidado del uniforme prolonga su vida útil y mantiene nuestra imagen impecable.</p>
       </Seccion>
 
-      <Seccion>
+      <Seccion suave>
         <Titulo extra={<Confirmar />}>Especificaciones de prendas por área</Titulo>
         <div className="tabla-marco">
           <table>
@@ -164,7 +242,7 @@ export default function Dotacion() {
         </div>
       </Seccion>
 
-      <Seccion suave>
+      <Seccion>
         <Titulo>Guía de tallas</Titulo>
         <div className="rejilla rejilla-2">
           <div>
@@ -178,7 +256,7 @@ export default function Dotacion() {
         </div>
       </Seccion>
 
-      <Seccion>
+      <Seccion suave>
         <Titulo>Presentación personal</Titulo>
         <div className="tabla-marco">
           <table>
@@ -194,7 +272,7 @@ export default function Dotacion() {
         </div>
       </Seccion>
 
-      <Seccion suave>
+      <Seccion>
         <Titulo>Compromiso del colaborador</Titulo>
         <p><strong>Me comprometo a:</strong></p>
         <ListaCorazon items={d.compromiso} />
@@ -203,21 +281,33 @@ export default function Dotacion() {
         </div>
       </Seccion>
 
-      <Seccion>
-        <Titulo>Láminas del manual anterior</Titulo>
-        <p className="entrada">Donde estas láminas no coinciden con lo que ves en esta página, manda lo que ves en esta página.</p>
-        <ul className="galeria">
-          {d.laminasAnteriores.map((titulo, i) => {
-            const src = `/img/manual/lamina-${String(i + 1).padStart(2, '0')}.webp`
-            return (
-              <li key={titulo}>
-                <VisorBoton className="" src={src} titulo={titulo} aria-label={`Ampliar lámina: ${titulo}`}>
-                  <img src={src} alt="" loading="lazy" width="600" height="400" />
-                </VisorBoton>
-              </li>
-            )
-          })}
+      <Seccion suave>
+        <Titulo>Láminas del manual</Titulo>
+        <ul className="galeria galeria-vertical">
+          {d.laminas.map(([n, titulo]) => (
+            <li key={n}>
+              <VisorBoton className="" src={d.lamina(n)} titulo={titulo} aria-label={`Ampliar lámina: ${titulo}`}>
+                <img src={d.lamina(n)} alt="" loading="lazy" width="1000" height="1094" />
+              </VisorBoton>
+            </li>
+          ))}
         </ul>
+        <details className="anteriores">
+          <summary>Ver las láminas del manual anterior</summary>
+          <p>Donde estas láminas no coinciden con lo que ves en esta página, manda lo que ves en esta página.</p>
+          <ul className="galeria">
+            {d.laminasAnteriores.map((titulo, i) => {
+              const src = `/img/manual/lamina-${String(i + 1).padStart(2, '0')}.webp`
+              return (
+                <li key={titulo}>
+                  <VisorBoton className="" src={src} titulo={titulo} aria-label={`Ampliar lámina anterior: ${titulo}`}>
+                    <img src={src} alt="" loading="lazy" width="600" height="400" />
+                  </VisorBoton>
+                </li>
+              )
+            })}
+          </ul>
+        </details>
       </Seccion>
     </>
   )

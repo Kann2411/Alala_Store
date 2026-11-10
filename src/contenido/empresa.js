@@ -3,6 +3,19 @@
 export const queHacemos =
   'Alalá Store es una empresa dedicada al diseño, elaboración y comercialización de bolsos y accesorios, buscando ofrecer productos de calidad, con diseños atractivos y pensados para complementar el estilo de nuestros clientes.'
 
+export const fundacion = 2021
+
+export const historia = [
+  'Alalá Store nace en el año 2021 como una tienda virtual, con la iniciativa de crear un espacio comercial que permitiera a sus clientes descubrir y adquirir productos de una manera práctica, cómoda y accesible.',
+  'Sus primeros pasos estuvieron enfocados en el comercio digital, aprovechando las herramientas tecnológicas y las plataformas virtuales para acercarse a sus clientes, dar a conocer sus productos y construir una comunidad alrededor de la marca.',
+  'Con dedicación, esfuerzo y compromiso, Alalá Store ha trabajado en su crecimiento y fortalecimiento, buscando nuevas oportunidades para ampliar su alcance, mejorar la experiencia de compra y consolidar su presencia en el mercado.',
+  'Desde sus inicios hasta hoy, cada logro ha sido resultado del trabajo, la perseverancia y la participación de las personas que han contribuido al desarrollo de la empresa.',
+  'Actualmente, Alalá Store continúa construyendo su camino, apostándole al crecimiento, la innovación y la satisfacción de sus clientes.',
+]
+
+export const historiaCierre =
+  'Nuestra historia comenzó en el mundo digital, pero nuestro crecimiento se construye gracias a las personas que hacen parte de ella.'
+
 export const proposito =
   'Crear productos que combinen calidad, creatividad y estilo, brindando también una experiencia cercana y especial a nuestros clientes.'
 
@@ -28,14 +41,22 @@ export const cultura = [
   ['Orientación al cliente', 'Buscamos generar experiencias positivas y memorables.'],
 ]
 
-/* Los 10 valores, con su ícono en public/img/valores. */
+/*
+  Los 10 valores, con su ícono en public/img/valores.
+  Los textos de Respeto, Responsabilidad, Trabajo en equipo, Honestidad, Compromiso y Calidad
+  son de la lámina 07 de Ultima info. Los otros 4 no aparecen en esa lámina.
+*/
+export const valoresIntro =
+  'En Alalá creemos en el poder de los valores, porque nos guían, nos unen y nos impulsan a dar lo mejor de nosotros cada día.'
+export const valoresRecuerda = 'Nuestros valores nos fortalecen como equipo y nos acercan a nuestros sueños.'
+
 export const valores = [
-  ['respeto', 'Respeto', 'Valoramos a todas las personas y sus opiniones.'],
-  ['responsabilidad', 'Responsabilidad', 'Cumplimos con nuestros compromisos y cuidamos nuestro trabajo.'],
-  ['compromiso', 'Compromiso', 'Damos lo mejor de nosotras para alcanzar los objetivos de la empresa.'],
-  ['calidad', 'Calidad', 'Nos esforzamos por hacer bien las cosas desde el primer momento.'],
-  ['equipo', 'Trabajo en equipo', 'Colaboramos y nos apoyamos para lograr resultados excepcionales.'],
-  ['honestidad', 'Honestidad', 'Actuamos con transparencia e integridad siempre.'],
+  ['respeto', 'Respeto', 'Valoramos las ideas, diferencias y el trabajo de cada persona.'],
+  ['responsabilidad', 'Responsabilidad', 'Cumplimos con nuestras tareas y asumimos las consecuencias de nuestras acciones.'],
+  ['compromiso', 'Compromiso', 'Damos lo mejor de nosotras, con pasión y dedicación en todo lo que hacemos.'],
+  ['calidad', 'Calidad', 'Buscamos la excelencia en nuestros productos y en nuestro trabajo.'],
+  ['equipo', 'Trabajo en equipo', 'Trabajamos juntas, apoyándonos y construyendo grandes logros.'],
+  ['honestidad', 'Honestidad', 'Actuamos con transparencia y siempre decimos la verdad.'],
   ['pasion', 'Pasión', 'Amamos lo que hacemos y nos esforzamos por mejorar cada día.'],
   ['disciplina', 'Disciplina', 'Seguimos los procesos y normas para asegurar productos con excelencia.'],
   ['mejora', 'Mejora continua', 'Buscamos nuevas formas de aprender, innovar y ser mejores cada día.'],
@@ -113,3 +134,18 @@ export const afiliaciones = [
     ],
   },
 ]
+
+/* Contrato (lámina 03 de Ultima info) */
+export const contrato = {
+  definicion: 'Es el acuerdo formal entre la empresa y el colaborador, donde se establecen los derechos, deberes y condiciones del trabajo.',
+  incluye: [
+    'Datos de la empresa y del trabajador.',
+    'Cargo que desempeñarás.',
+    'Salario y forma de pago.',
+    'Horario y jornada laboral.',
+    'Tiempo de contrato.',
+    'Funciones y responsabilidades.',
+  ],
+  brinda: ['Seguridad jurídica.', 'Estabilidad laboral.', 'Protección de tus derechos.', 'Claridad en tus funciones.'],
+  recuerda: 'Lee y comprende tu contrato antes de firmarlo.',
+}

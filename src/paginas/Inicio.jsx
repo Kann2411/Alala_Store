@@ -3,14 +3,14 @@ import { Separador } from '../componentes/piezas.jsx'
 
 /* estado: 'listo', 'parcial' o 'falta' — cambia el color de la etiqueta */
 const accesos = [
-  { ruta: '/quienes-somos', titulo: 'Quiénes somos', texto: 'Misión, visión, objetivos, cultura y valores.', estado: 'parcial', etiqueta: 'Falta la historia' },
+  { ruta: '/quienes-somos', titulo: 'Quiénes somos', texto: 'Historia, misión, visión, objetivos, cultura y valores.', estado: 'listo', etiqueta: 'Con contenido' },
   { ruta: '/induccion-general', titulo: 'Inducción general', texto: 'Lo que toda persona debe conocer al llegar, con su evaluación.', estado: 'parcial', etiqueta: 'Falta el link de evaluación' },
   { ruta: '/induccion-especifica', titulo: 'Inducción específica', texto: 'Funciones, riesgos y normas de cada cargo.', estado: 'listo', etiqueta: 'Con contenido' },
   { ruta: '/dotacion', titulo: 'Manual de dotación', texto: 'Uniformes, protección y cuidados por cargo.', estado: 'listo', etiqueta: 'Con contenido' },
   { ruta: '/formato-dotacion', titulo: 'Formato de dotación', texto: 'Planilla de las 4 entregas del año.', estado: 'listo', etiqueta: 'Con contenido' },
   { ruta: '/bienestar', titulo: 'Bienestar y cronogramas', texto: 'Plan anual con 21 actividades y cronograma de inducción.', estado: 'listo', etiqueta: 'Con contenido' },
   { ruta: '/evaluacion-desempeno', titulo: 'Evaluación de desempeño', texto: 'Acceso a la app de evaluación.', estado: 'falta', etiqueta: 'Falta contenido' },
-  { ruta: '/formacion', titulo: 'Formación empresarial', texto: 'Modelo de formación de la empresa.', estado: 'falta', etiqueta: 'Falta contenido' },
+  { ruta: '/formacion', titulo: 'Formación empresarial', texto: 'Cómo aprendemos y crecemos: las cinco etapas del modelo.', estado: 'listo', etiqueta: 'Con contenido' },
 ]
 
 export default function Inicio() {

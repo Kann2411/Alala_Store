@@ -29,14 +29,14 @@ Este archivo reúne todo lo que tenemos para construir el portal y es la referen
 
 | # | Vista | Ruta sugerida | Contenido disponible | Estado |
 |---|-------|---------------|----------------------|--------|
-| 1 | Quiénes somos / Historia | `/quienes-somos` | Propósito, misión, visión, objetivos, cultura y valores. Sin historia | 🟢 Casi completa |
+| 1 | Quiénes somos / Historia | `/quienes-somos` | Historia, propósito, misión, visión, objetivos, cultura y valores | 🟢 Completa |
 | 2 | Inducción general | `/induccion-general` | Bienvenida, video, cultura, SST y afiliaciones. Falta el link de la evaluación | 🟢 Casi completa |
 | 3 | Inducción específica | `/induccion-especifica` | Completa, solo para el cargo Operaria de confección | 🟢 Casi completa |
 | 4 | Manual de dotación | `/dotacion` | Manual de 24 láminas en baja resolución, más 5 láminas nuevas en buena resolución (ppt 15 a 19). Falta la tabla de tallas | 🟡 Definir versión |
 | 5 | Formato de entrega de dotación | `/formato-dotacion` | Planilla, en dos versiones distintas | 🟡 Definir versión |
 | 6 | Plan de bienestar y cronogramas | `/bienestar` | Plan anual completo con 21 actividades y cronograma de inducción | 🟢 Completa |
 | 7 | Evaluación de desempeño | `/evaluacion-desempeno` | Nada. Lleva botón a la app | ❌ Falta |
-| 8 | Modelo de formación empresarial | `/formacion` | Nada | ❌ Falta |
+| 8 | Modelo de formación empresarial | `/formacion` | Introducción, propósito y estructura en 5 etapas | 🟢 Completa |
 
 ### Decisiones técnicas del brief
 
@@ -89,7 +89,21 @@ Valores medidos sobre las imágenes (img 1, 3, 4 y 10). Son aproximados porque e
 
 ## 3. Quiénes somos
 
-❌ **Falta:** historia, fecha de fundación, ubicación y datos de contacto.
+❌ **Falta:** ubicación y datos de contacto.
+
+### Historia
+
+Alalá Store nace en el año 2021 como una tienda virtual, con la iniciativa de crear un espacio comercial que permitiera a sus clientes descubrir y adquirir productos de una manera práctica, cómoda y accesible.
+
+Sus primeros pasos estuvieron enfocados en el comercio digital, aprovechando las herramientas tecnológicas y las plataformas virtuales para acercarse a sus clientes, dar a conocer sus productos y construir una comunidad alrededor de la marca.
+
+Con dedicación, esfuerzo y compromiso, Alalá Store ha trabajado en su crecimiento y fortalecimiento, buscando nuevas oportunidades para ampliar su alcance, mejorar la experiencia de compra y consolidar su presencia en el mercado.
+
+Desde sus inicios hasta hoy, cada logro ha sido resultado del trabajo, la perseverancia y la participación de las personas que han contribuido al desarrollo de la empresa.
+
+Actualmente, Alalá Store continúa construyendo su camino, apostándole al crecimiento, la innovación y la satisfacción de sus clientes.
+
+*"Nuestra historia comenzó en el mundo digital, pero nuestro crecimiento se construye gracias a las personas que hacen parte de ella."*
 
 ### A qué nos dedicamos (ppt 3)
 
@@ -678,6 +692,31 @@ Campos: firma del colaborador(a) y fecha.
 
 ---
 
+## 6.1 Manual de dotación: versión de "Ultima info" (llegó el 10 de noviembre de 2026)
+
+16 láminas numeradas: 01, 03 a 11 y 13 a 18. **Faltan la 02 y la 12.** Esta versión manda sobre la presentación y el manual de 24 láminas. Las láminas están en `public/img/dotacion/laminas/` y los recortes de prendas y personas en `public/img/dotacion/`.
+
+| Lámina | Tema | Dónde quedó |
+|---|---|---|
+| 01 | Manual de dotación: introducción, objetivo, quiénes la reciben, qué incluye, recomendaciones | Dotación: portada, objetivo y alcance, recomendaciones |
+| 03 | Contrato: qué es, qué incluye, qué te brinda | Inducción general: "Tu contrato" |
+| 04 | Introducción a la dotación: tipos y ejemplos por área | Dotación: "¿Qué es la dotación?" y "Prendas por área" |
+| 05 | Objetivo, alcance, funciones de la dotación, importante | Dotación: "Objetivo y alcance" |
+| 06 | Dotación y presentación: prendas por área, recomendaciones | Dotación: "Prendas por área" |
+| 07 | Nuestros valores (6) | Quiénes somos: textos de 6 de los 10 valores, entrada y recuerda |
+| 08 | Código de vestuario: cómo debe ser, imagen adecuada, evita esto | Dotación: "Código de vestuario" (reemplaza el de la presentación) |
+| 09, 10, 11, 17, 18 | Asesor(a) comercial, domiciliario(a), operaria(o) de confección, servicios generales, maternidad | Dotación por cargo |
+| 13 a 16 | Protección: administrativa, confección, logística y despacho, servicios generales | Elementos de protección por área |
+
+Decisiones tomadas:
+
+- Cajero(a) no tiene lámina nueva: se mantiene con la presentación (ppt 18).
+- Se mantienen los 10 valores; solo cambian los textos de los 6 que trae la lámina 07. Siguen "por confirmar".
+- Protección en domicilios no tiene lámina nueva: se mantiene la del manual anterior, marcada "por confirmar".
+- Se escribe "Alalá" donde las láminas dicen "alala".
+- Lámina 18: "Zapatos de lactancia (sportivos)" se escribió "(deportivos)".
+- Ya no aparecen: casco, chaqueta magenta y bolso térmico del domiciliario; cinturón y maletín del asesor; delantal negro del operario; delantal impermeable e implementos de limpieza de servicios generales; brazo de lactancia; gel antibacterial, protector solar y tapones auditivos de la protección administrativa.
+
 ## 7. Formato de entrega de dotación
 
 Registro de 4 entregas al año:
@@ -835,6 +874,22 @@ Horario igual todos los días:
 
 ---
 
+## 8.3 Modelo de formación empresarial
+
+El modelo de formación empresarial de Alalá Store está diseñado para fortalecer el talento humano mediante procesos de aprendizaje continuo, capacitación y desarrollo de competencias.
+
+**Propósito:** preparar a los colaboradores para responder a las necesidades de la organización, mejorar sus habilidades laborales y contribuir al crecimiento empresarial, teniendo en cuenta la actividad comercial y el manejo del comercio electrónico.
+
+**Estructura:**
+
+1. **Diagnóstico de necesidades:** identificar las necesidades de capacitación de cada área y las oportunidades de mejora de los colaboradores.
+2. **Planeación de la formación:** establecer los temas, objetivos, responsables, recursos y tiempos de cada capacitación.
+3. **Ejecución:** desarrollar las capacitaciones mediante talleres, cursos, charlas y actividades prácticas.
+4. **Evaluación:** medir los conocimientos adquiridos y la efectividad de las actividades realizadas.
+5. **Seguimiento y mejora:** verificar la aplicación de lo aprendido y establecer nuevas oportunidades de formación.
+
+---
+
 ## 9. Contradicciones por resolver
 
 | # | Tema | Versión A | Versión B |
@@ -861,6 +916,10 @@ Horario igual todos los días:
 | 20 | ✅ Resuelto: manda la presentación. Cabeza de domiciliario(a) | Gorra negra con logo (lámina 10) | Casco (ppt 19 y lámina 16). Además, ppt 16 prohíbe gorras |
 | 21 | ✅ Resuelto: se incluye el cargo. Dotación de cajero(a) | Cargo nuevo con lámina propia (ppt 18) | No aparece en el manual de 24 láminas |
 | 22 | Descripción de la marca | Bolsos y accesorios (documentos) | "Moda & estilo", "Detalles de lujo" (video) |
+| 23 | Prendas del área de ventas | Chaleco, blusa y jean (láminas 04 y 06) | Camisa blanca, jean y zapatos negros del asesor(a) comercial (lámina 09) |
+| 24 | Pantalón y calzado administrativos | Blusa y pantalón (láminas 04 y 06) | Jean azul oscuro y tenis negro (manual anterior, especificaciones) |
+| 25 | Protección administrativa | Guantes anticorte y dedal (lámina 13), propios de confección | Gel, protector solar, tapones (manual anterior) |
+| 26 | Gorras | "Evita gorras en el área de trabajo" (lámina 08) | Gorra en la dotación de domiciliario, servicios generales y logística (láminas 10, 15, 17) |
 
 ### Errores en los documentos originales
 
@@ -878,12 +937,15 @@ Horario igual todos los días:
 
 ### Contenido que falta
 
-- [ ] Historia, ubicación y contacto.
+- [x] Historia (llegó el 10 de noviembre de 2026).
+- [ ] Ubicación y contacto.
+- [x] Nueva versión del manual de dotación, contrato y valores (llegó el 10 de noviembre de 2026).
+- [ ] Láminas 02 y 12 del manual nuevo, si existen.
 - [ ] Inducciones específicas de otros cargos, si existen.
 - [ ] Si la inducción general debe incluir EPS y caja de compensación.
 - [ ] Fechas exactas y año del plan de bienestar.
 - [ ] Evaluación de desempeño: qué texto acompaña al botón.
-- [ ] Modelo de formación empresarial.
+- [x] Modelo de formación empresarial (llegó el 10 de noviembre de 2026).
 
 ### Links
 
@@ -903,6 +965,7 @@ Horario igual todos los días:
 ### Decisiones
 
 - [ ] Resolver las contradicciones de la sección 9. Ya resueltas: 16 a 21 (dotación).
+- [ ] Contradicciones 23 a 26, que salen de las láminas de "Ultima info".
 - [ ] Dominio: ¿ya hay uno o hay que escoger?
 - [ ] Fecha límite para entregar el contenido.
 - [ ] Trato: la inducción habla en femenino ("bienvenida", "compañeras") y el manual en general ("colaboradores", "operario(a)").

@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
-import { BotonEvaluacion } from '../componentes/interaccion.jsx'
+import { BotonEvaluacion, VisorBoton } from '../componentes/interaccion.jsx'
 import { Confirmar, Datos, ListaCorazon, ListaPasos, Portada, Recuerda, Seccion, Tarjetas, Titulo } from '../componentes/piezas.jsx'
-import { afiliaciones, ambiente, comoPromovemos, loQueNosRepresenta, mision, nosMueve, sst, vision } from '../contenido/empresa.js'
+import { afiliaciones, ambiente, contrato, comoPromovemos, loQueNosRepresenta, mision, nosMueve, sst, vision } from '../contenido/empresa.js'
 
 export default function InduccionGeneral() {
   return (
@@ -75,6 +75,30 @@ export default function InduccionGeneral() {
       <Seccion>
         <div className="duo">
           <div>
+            <Titulo>Tu contrato</Titulo>
+            <p className="entrada">{contrato.definicion}</p>
+          </div>
+          <img className="panel-foto" src="/img/dotacion/personas/contrato.webp" alt="Tabla con un contrato de trabajo firmado y un bolígrafo" width="587" height="510" loading="lazy" />
+        </div>
+        <div className="rejilla rejilla-2" style={{ marginTop: 16 }}>
+          <article className="tarjeta">
+            <h3 style={{ marginBottom: 10 }}>¿Qué incluye?</h3>
+            <ListaCorazon items={contrato.incluye} />
+          </article>
+          <article className="tarjeta">
+            <h3 style={{ marginBottom: 10 }}>Tu contrato te brinda</h3>
+            <ListaCorazon items={contrato.brinda} />
+          </article>
+        </div>
+        <Recuerda titulo="Recuerda:">{contrato.recuerda}</Recuerda>
+        <p style={{ margin: '12px 0 0' }}>
+          <VisorBoton src="/img/dotacion/laminas/03.webp" titulo="Contrato">Ver lámina completa</VisorBoton>
+        </p>
+      </Seccion>
+
+      <Seccion suave>
+        <div className="duo">
+          <div>
             <Titulo>Seguridad y Salud en el Trabajo</Titulo>
             <p className="entrada">En Alalá Store nos preocupamos por el bienestar de nuestro equipo. Por eso, contamos con un Sistema de Gestión de Seguridad y Salud en el Trabajo (SG-SST), que nos permite prevenir riesgos, cuidar la salud y crear un ambiente laboral seguro y saludable para todos.</p>
           </div>
@@ -86,7 +110,7 @@ export default function InduccionGeneral() {
         <Recuerda titulo="¡Tu seguridad también es parte de nuestro éxito!">¡Prevenir también es cuidar!</Recuerda>
       </Seccion>
 
-      <Seccion suave>
+      <Seccion>
         <div className="duo">
           <div>
             <Titulo extra={<Confirmar />}>Afiliaciones y protección del colaborador</Titulo>
@@ -107,7 +131,7 @@ export default function InduccionGeneral() {
         </div>
       </Seccion>
 
-      <Seccion>
+      <Seccion suave>
         <div className="evaluacion-bloque">
           <div>
             <h2>Tu presentación también cuenta</h2>

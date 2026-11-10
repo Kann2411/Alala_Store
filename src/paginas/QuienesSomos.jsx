@@ -1,5 +1,6 @@
-import { Confirmar, Datos, ListaCorazon, Portada, Recuerda, Seccion, Temporal, Titulo } from '../componentes/piezas.jsx'
-import { areas, cultura, mision, objetivos, proposito, queHacemos, valores, vision } from '../contenido/empresa.js'
+import { VisorBoton } from '../componentes/interaccion.jsx'
+import { Confirmar, Datos, ListaCorazon, Portada, Recuerda, Seccion, Titulo } from '../componentes/piezas.jsx'
+import { areas, cultura, fundacion, historia, historiaCierre, mision, objetivos, proposito, queHacemos, valores, valoresIntro, valoresRecuerda, vision } from '../contenido/empresa.js'
 
 export default function QuienesSomos() {
   return (
@@ -15,9 +16,13 @@ export default function QuienesSomos() {
 
       <Seccion>
         <Recuerda titulo="Nuestro propósito:">{proposito}</Recuerda>
-        <div style={{ marginTop: 18 }}>
-          <Temporal titulo="Nuestra historia">Aquí irá la historia de la empresa.</Temporal>
-        </div>
+        <div style={{ marginTop: 40 }} />
+        <Titulo>Nuestra historia</Titulo>
+        <p className="etiqueta">Desde {fundacion}</p>
+        {historia.map((parrafo) => (
+          <p className="entrada" key={parrafo}>{parrafo}</p>
+        ))}
+        <blockquote className="cita">{historiaCierre}</blockquote>
       </Seccion>
 
       <Seccion suave>
@@ -65,7 +70,7 @@ export default function QuienesSomos() {
 
       <Seccion suave>
         <Titulo extra={<Confirmar>Lista por confirmar</Confirmar>}>Nuestros valores</Titulo>
-        <p className="entrada">Nuestros valores nos guían cada día y se reflejan en la calidad de cada producto que confeccionamos.</p>
+        <p className="entrada">{valoresIntro}</p>
         <div className="rejilla rejilla-fotos">
           {valores.map(([icono, nombre, texto]) => (
             <article className="tarjeta valor" key={icono}>
@@ -75,6 +80,10 @@ export default function QuienesSomos() {
             </article>
           ))}
         </div>
+        <Recuerda titulo="Valores que nos hacen crecer.">{valoresRecuerda}</Recuerda>
+        <p style={{ margin: '12px 0 0' }}>
+          <VisorBoton src="/img/dotacion/laminas/07.webp" titulo="Nuestros valores">Ver lámina completa</VisorBoton>
+        </p>
       </Seccion>
 
       <Seccion>
