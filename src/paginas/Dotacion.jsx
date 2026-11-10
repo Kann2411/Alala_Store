@@ -292,22 +292,6 @@ export default function Dotacion() {
             </li>
           ))}
         </ul>
-        <details className="anteriores">
-          <summary>Ver las láminas del manual anterior</summary>
-          <p>Donde estas láminas no coinciden con lo que ves en esta página, manda lo que ves en esta página.</p>
-          <ul className="galeria">
-            {d.laminasAnteriores.map((titulo, i) => {
-              const src = `/img/manual/lamina-${String(i + 1).padStart(2, '0')}.webp`
-              return (
-                <li key={titulo}>
-                  <VisorBoton className="" src={src} titulo={titulo} aria-label={`Ampliar lámina anterior: ${titulo}`}>
-                    <img src={src} alt="" loading="lazy" width="600" height="400" />
-                  </VisorBoton>
-                </li>
-              )
-            })}
-          </ul>
-        </details>
       </Seccion>
     </>
   )

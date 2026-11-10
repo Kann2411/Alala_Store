@@ -3,7 +3,8 @@
   Versión oficial: las láminas de "Ultima info" (llegaron el 10 de noviembre de 2026).
   Láminas completas en public/img/dotacion/laminas/NN.webp y recortes en public/img/dotacion/.
   Lo que esas láminas no cubren sale de la presentación (cajero) y del manual de 24 láminas
-  (domicilios, cuidados, especificaciones, tallas, presentación personal y compromiso).
+  (domicilios, cuidados, especificaciones, tallas, presentación personal y compromiso),
+  sin mostrar las láminas anteriores.
 */
 
 /* Ruta de una lámina nueva o de un recorte */
@@ -273,7 +274,7 @@ export const cuidados = ['Lava tu uniforme con colores similares.', 'Usa deterge
 */
 export const especificaciones = [
   ['Administrativa', 'Poliéster 65 %, algodón 35 %', 'Jean azul oscuro corte clásico', 'Tenis negro cómodo'],
-  ['Asesor(a) comercial', 'Camisa blanca con logo', 'Jean azul oscuro clásico', 'Zapatos negros cerrados', true],
+  ['Asesor(a) comercial', 'Poliéster 65 %, algodón 35 %', 'Jean azul oscuro clásico', 'Zapatos negros cerrados'],
   ['Confección', 'Poliéster 65 %, algodón 35 %', 'Jean azul oscuro (clásico)', 'Zapatos cerrados y cómodos'],
   ['Servicios generales', 'Poliéster 65 %, algodón 35 %', 'Pantalón tipo cargo', 'Zapatos cerrados y cómodos'],
   ['Domiciliario(a)', 'Camiseta blanca con logo; chaqueta negra impermeable en poliéster 100 %', 'Jean azul oscuro resistente', 'Zapatos negros antideslizantes'],
@@ -318,15 +319,6 @@ export const laminas = [
   ['16', 'Protección: servicios generales'],
   ['17', 'Dotación: servicios generales'],
   ['18', 'Dotación de maternidad'],
-]
-
-/* Láminas del manual anterior, en public/img/manual/lamina-NN.webp */
-export const laminasAnteriores = [
-  'Portada', 'A quién va dirigido', 'Contenido', 'Introducción', 'Objetivo', 'Alcance', 'Nuestros valores',
-  'Códigos de vestuario', 'Asesor(a) comercial', 'Domiciliario(a)', 'Operario(a) de confección', 'Servicios generales',
-  'Protección: administrativa', 'Protección: confección', 'Protección: logística y despacho', 'Protección: domicilios',
-  'Cuidados del uniforme', 'Dotación de maternidad', 'Guía de tallas', 'Planilla de entrega', 'Prendas individuales',
-  'Especificaciones por área', 'Presentación personal', 'Compromiso del colaborador', 'Gracias',
 ]
 
 /* Planilla de entrega */

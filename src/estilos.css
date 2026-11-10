@@ -414,6 +414,3 @@ tbody th { background: var(--panel); color: var(--vino); }
 .imagen-adecuada { display: flex; gap: 16px; align-items: center; }
 .imagen-adecuada img { flex: none; width: 120px; height: auto; border-radius: 12px; }
 .galeria-vertical img { aspect-ratio: 4 / 5; object-position: top; }
-.anteriores { margin-top: 24px; }
-.anteriores summary { display: inline-flex; align-items: center; min-height: 46px; cursor: pointer; font: 800 1rem var(--titulos); color: var(--magenta-oscuro); }
-.anteriores p { margin: 6px 0 14px; }

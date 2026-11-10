@@ -664,6 +664,8 @@ Camiseta blanca con logo, delantal negro con bolsillos, jean azul oscuro corte c
 
 ⚠️ Los porcentajes se leen con dificultad: confirmar con el original.
 
+✅ Confirmado el 10 de noviembre de 2026: la tela del asesor(a) comercial es poliéster 65 %, algodón 35 %.
+
 ### Presentación personal por área
 
 | Aspecto | Asesora comercial | Operario(a) de confección |
