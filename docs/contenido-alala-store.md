@@ -892,6 +892,14 @@ El modelo de formación empresarial de Alalá Store está diseñado para fortale
 
 ---
 
+## 8.4 Catálogo de bolsos y accesorios (llegó el 11 de noviembre de 2026)
+
+23 fotos en `public/img/catalogo/`, cada una con el sello de "Alalá Store" en la esquina inferior derecha (no tapa marcas ni dice quién fabrica el producto),, mostradas en la página de inicio en lugar de la sección "¿Qué falta?". Datos en `src/contenido/catalogo.js`.
+
+- 17 bolsos, 3 gafas de sol (referencias 25003, M-68027 y SMU04Z), 2 sombreros tipo pescador y 1 billetera.
+- Las descripciones solo dicen lo que se ve en la foto. No llegaron nombres de producto ni precios.
+- ⚠️ Muchas fotos muestran marcas de terceros (Chanel, Miu Miu, Coach, Dior, Fendi, entre otras) en los productos, las cajas o las bolsas. El texto del sitio no las nombra. Confirmar con Alalá Store que se pueden publicar.
+
 ## 9. Contradicciones por resolver
 
 | # | Tema | Versión A | Versión B |
@@ -941,6 +949,8 @@ El modelo de formación empresarial de Alalá Store está diseñado para fortale
 
 - [x] Historia (llegó el 10 de noviembre de 2026).
 - [ ] Ubicación y contacto.
+- [ ] Catálogo: nombres y precios de los productos, si se van a mostrar.
+- [ ] Catálogo: permiso para publicar fotos con marcas de terceros.
 - [x] Nueva versión del manual de dotación, contrato y valores (llegó el 10 de noviembre de 2026).
 - [ ] Láminas 02 y 12 del manual nuevo, si existen.
 - [ ] Inducciones específicas de otros cargos, si existen.

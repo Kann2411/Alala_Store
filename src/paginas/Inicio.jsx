@@ -1,17 +1,42 @@
+import { useState } from 'react'
 import { Link } from 'react-router'
+import { VisorBoton } from '../componentes/interaccion.jsx'
 import { Separador } from '../componentes/piezas.jsx'
+import { categorias, productos } from '../contenido/catalogo.js'
 
-/* estado: 'listo', 'parcial' o 'falta' — cambia el color de la etiqueta */
-const accesos = [
-  { ruta: '/quienes-somos', titulo: 'Quiénes somos', texto: 'Historia, misión, visión, objetivos, cultura y valores.', estado: 'listo', etiqueta: 'Con contenido' },
-  { ruta: '/induccion-general', titulo: 'Inducción general', texto: 'Lo que toda persona debe conocer al llegar, con su evaluación.', estado: 'parcial', etiqueta: 'Falta el link de evaluación' },
-  { ruta: '/induccion-especifica', titulo: 'Inducción específica', texto: 'Funciones, riesgos y normas de cada cargo.', estado: 'listo', etiqueta: 'Con contenido' },
-  { ruta: '/dotacion', titulo: 'Manual de dotación', texto: 'Uniformes, protección y cuidados por cargo.', estado: 'listo', etiqueta: 'Con contenido' },
-  { ruta: '/formato-dotacion', titulo: 'Formato de dotación', texto: 'Planilla de las 4 entregas del año.', estado: 'listo', etiqueta: 'Con contenido' },
-  { ruta: '/bienestar', titulo: 'Bienestar y cronogramas', texto: 'Plan anual con 21 actividades y cronograma de inducción.', estado: 'listo', etiqueta: 'Con contenido' },
-  { ruta: '/evaluacion-desempeno', titulo: 'Evaluación de desempeño', texto: 'Acceso a la app de evaluación.', estado: 'falta', etiqueta: 'Falta contenido' },
-  { ruta: '/formacion', titulo: 'Formación empresarial', texto: 'Cómo aprendemos y crecemos: las cinco etapas del modelo.', estado: 'listo', etiqueta: 'Con contenido' },
-]
+/* Catálogo con filtro por categoría. Cada foto se abre en grande en el visor. */
+function Catalogo() {
+  const [filtro, setFiltro] = useState('Todos')
+  const visibles = filtro === 'Todos' ? productos : productos.filter((p) => p[1] === filtro)
+  const filtros = ['Todos', ...categorias]
+
+  return (
+    <>
+      <div className="filtros" role="group" aria-label="Filtrar el catálogo">
+        {filtros.map((f) => (
+          <button key={f} type="button" className="pestana" aria-pressed={f === filtro} onClick={() => setFiltro(f)}>
+            {f} <span className="filtro-cuenta">{f === 'Todos' ? productos.length : productos.filter((p) => p[1] === f).length}</span>
+          </button>
+        ))}
+      </div>
+      <p className="visually-hidden" aria-live="polite">{visibles.length} productos</p>
+      <ul className="catalogo">
+        {visibles.map(([archivo, categoria, texto, ancho, alto, referencia]) => (
+          <li key={archivo}>
+            <VisorBoton className="producto" src={`/img/catalogo/${archivo}.webp`} titulo={texto} aria-label={`Ampliar foto: ${texto}`}>
+              <img src={`/img/catalogo/${archivo}.webp`} alt="" width={ancho} height={alto} loading="lazy" />
+              <span className="producto-texto">
+                <span className="producto-categoria">{categoria}</span>
+                <span className="producto-nombre">{texto}</span>
+                {referencia && <span className="producto-ref">Ref. {referencia}</span>}
+              </span>
+            </VisorBoton>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}
 
 export default function Inicio() {
   return (
@@ -27,6 +52,7 @@ export default function Inicio() {
             <div className="botones">
               <Link className="boton" to="/induccion-especifica">Ver inducción específica</Link>
               <Link className="boton boton-sec" to="/dotacion">Manual de dotación</Link>
+              <a className="boton boton-sec" href="#catalogo">Ver catálogo</a>
             </div>
           </div>
           <img
@@ -39,22 +65,12 @@ export default function Inicio() {
         </div>
       </section>
 
-      <section className="seccion">
+      <section className="seccion seccion-suave" id="catalogo">
         <div className="contenedor">
-          <h2 className="titulo">¿Qué falta?</h2>
+          <p className="etiqueta">Catálogo</p>
+          <h2 className="titulo">Nuestros bolsos y accesorios</h2>
           <Separador />
-          <ul className="accesos">
-            {accesos.map((a, i) => (
-              <li key={a.ruta}>
-                <Link className="acceso" to={a.ruta}>
-                  <b>{i + 1}</b>
-                  <h3>{a.titulo}</h3>
-                  <p>{a.texto}</p>
-                  <span className={`estado estado-${a.estado}`}>{a.etiqueta}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <Catalogo />
         </div>
       </section>
     </>
