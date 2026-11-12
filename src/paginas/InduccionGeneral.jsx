@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { BotonEvaluacion, VisorBoton } from '../componentes/interaccion.jsx'
-import { Confirmar, Datos, ListaCorazon, ListaPasos, Portada, Recuerda, Seccion, Tarjetas, Titulo } from '../componentes/piezas.jsx'
+import { Datos, ListaCorazon, ListaPasos, Portada, Recuerda, Seccion, Tarjetas, Titulo } from '../componentes/piezas.jsx'
 import { afiliaciones, ambiente, contrato, comoPromovemos, loQueNosRepresenta, mision, nosMueve, sst, vision } from '../contenido/empresa.js'
 
 export default function InduccionGeneral() {
@@ -113,7 +113,7 @@ export default function InduccionGeneral() {
       <Seccion>
         <div className="duo">
           <div>
-            <Titulo extra={<Confirmar />}>Afiliaciones y protección del colaborador</Titulo>
+            <Titulo>Afiliaciones y protección del colaborador</Titulo>
             <p className="entrada">Tu bienestar también es parte de nuestro éxito. Juntos construimos un mejor lugar para trabajar.</p>
           </div>
           <img className="panel-foto" src="/img/presentacion/afiliaciones.webp" alt="Casco rosado, cuaderno con la frase Tu futuro también importa y alcancía" width="576" height="560" loading="lazy" />

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Pestanas, VisorBoton } from '../componentes/interaccion.jsx'
-import { Confirmar, Datos, ListaCorazon, Portada, Seccion, Titulo } from '../componentes/piezas.jsx'
+import { Datos, ListaCorazon, Portada, Seccion, Titulo } from '../componentes/piezas.jsx'
 import * as b from '../contenido/bienestar.js'
 
 function Actividad({ actividad }) {
@@ -124,7 +124,7 @@ export default function Bienestar() {
             <Datos
               items={[
                 ['Responsable', b.plan.responsable],
-                ['Dirigido a', <>{b.plan.dirigidoA} <Confirmar>Alcance por confirmar</Confirmar></>],
+                ['Dirigido a', b.plan.dirigidoA],
                 ['Periodicidad', b.plan.periodicidad],
                 ['Presupuesto', b.plan.presupuesto],
                 ['Elaborado', b.plan.elaborado],
@@ -146,7 +146,7 @@ export default function Bienestar() {
       <Seccion id="calendario">
         <Titulo>Cronograma anual</Titulo>
         <p className="entrada">
-          Las fechas específicas se definirán de acuerdo con la operación de la tienda y la disponibilidad de los colaboradores. <Confirmar>Fechas por confirmar</Confirmar>
+          Las fechas específicas se definirán de acuerdo con la operación de la tienda y la disponibilidad de los colaboradores.
         </p>
         <Calendario />
       </Seccion>
@@ -174,7 +174,7 @@ export default function Bienestar() {
       </Seccion>
 
       <Seccion suave id="induccion">
-        <Titulo extra={<Confirmar />}>Cronograma de inducción específica: primera semana</Titulo>
+        <Titulo>Cronograma de inducción específica: primera semana</Titulo>
         <div className="botones" style={{ marginBottom: 16 }}>
           <VisorBoton src="/img/laminas/lamina-12.webp" titulo="Cronograma de inducción específica: primera semana">
             Ver cronograma original

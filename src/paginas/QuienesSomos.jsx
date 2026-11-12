@@ -1,5 +1,5 @@
 import { VisorBoton } from '../componentes/interaccion.jsx'
-import { Confirmar, Datos, ListaCorazon, Portada, Recuerda, Seccion, Titulo } from '../componentes/piezas.jsx'
+import { Datos, ListaCorazon, Portada, Recuerda, Seccion, Titulo } from '../componentes/piezas.jsx'
 import { areas, cultura, fundacion, historia, historiaCierre, mision, objetivos, proposito, queHacemos, valores, valoresIntro, valoresRecuerda, vision } from '../contenido/empresa.js'
 
 export default function QuienesSomos() {
@@ -69,7 +69,7 @@ export default function QuienesSomos() {
       </Seccion>
 
       <Seccion suave>
-        <Titulo extra={<Confirmar>Lista por confirmar</Confirmar>}>Nuestros valores</Titulo>
+        <Titulo>Nuestros valores</Titulo>
         <p className="entrada">{valoresIntro}</p>
         <div className="rejilla rejilla-fotos">
           {valores.map(([icono, nombre, texto]) => (

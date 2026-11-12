@@ -641,12 +641,38 @@ Cierre: *"¡Bienvenida al equipo Alalá! Cada puntada cuenta, cada detalle hace 
 
 ### Guía de tallas
 
-⚠️ **Las medidas no se transcribieron a propósito.** Los números no se leen con seguridad y una talla mal copiada causaría pedidos equivocados. Se necesita el original.
+✅ Llegó la lámina "Guía de tallas" el 12 de noviembre de 2026 (`public/img/dotacion/laminas/tallas.webp`). Reemplaza la del manual anterior y el contenido temporal del sitio.
 
-- **Camisetas y chaquetas (cm):** tallas XS a XXL, con busto, cintura y cadera. ⚠️ Parece faltar la talla XL.
-- **Pantalones (cm):** tallas 6 a 16, con cintura, cadera y largo interno.
+**Camisetas / blusas**
+
+| Talla | Busto (cm) | Cintura (cm, referencia) |
+|---|---|---|
+| XS | 64 - 80 | 60 - 72 |
+| S | 81 - 94 | 73 - 78 |
+| M | 95 - 100 | 79 - 84 |
+| L | 101 - 106 | 85 - 90 |
+| XL | 107 - 112 | 91 - 96 |
+| XXL | 115 - 118 | 97 - 102 |
+
+**Pantalones**
+
+| Talla | Cintura (cm) | Cadera (cm) |
+|---|---|---|
+| 6 | 68 - 72 | 90 - 94 |
+| 8 | 73 - 77 | 95 - 99 |
+| 10 | 78 - 82 | 100 - 104 |
+| 12 | 83 - 87 | 104 - 109 |
+| 14 | 88 - 92 | 110 - 114 |
+| 16 | 93 - 97 | 115 - 119 |
+
 - **Cómo medirse:** busto, la parte más amplia. Cintura, la parte más estrecha. Cadera, la parte más amplia.
 - *"Las medidas son aproximadas y pueden variar según el tipo de prenda."*
+- La lámina también trae un recuadro "Área de medida y despacho": guantes de seguridad, calzado de seguridad, faja lumbar (según la labor), chaleco reflectivo, casco (según el área).
+
+⚠️ Revisar con Alalá Store:
+- Busto: XL termina en 112 y XXL empieza en 115. No hay talla para 113 y 114.
+- Cadera: la talla 10 termina en 104 y la 12 empieza en 104.
+- "Área de medida y despacho" no corresponde a ningún área del manual. ¿Es "Logística y despacho"? Si lo es, la faja lumbar no aparece en la lámina 15.
 
 ### Prendas individuales de referencia
 
@@ -712,9 +738,9 @@ Campos: firma del colaborador(a) y fecha.
 
 Decisiones tomadas:
 
-- Cajero(a) no tiene lámina nueva: se mantiene con la presentación (ppt 18).
+- Cajero(a): lámina 19, llegó el 12 de noviembre de 2026. Reemplaza la versión de la presentación (ppt 18). Trae funciones principales, dotación (camisa tipo polo, pantalón clásico, chaqueta según clima), elementos de trabajo (escáner, computador, caja registradora) y elementos de seguridad (guantes, carné).
 - Se mantienen los 10 valores; solo cambian los textos de los 6 que trae la lámina 07. Siguen "por confirmar".
-- Protección en domicilios no tiene lámina nueva: se mantiene la del manual anterior, marcada "por confirmar".
+- Protección en domicilios: lámina "Elementos de protección para nuestros domiciliarios" (llegó el 12 de noviembre de 2026), guardada como `laminas/10b.webp`. 12 elementos: gorra, chaqueta y chaleco reflectivos, casco (opcional), guantes de protección, tapabocas (opcional), morral de reparto seguro, rodilleras (opcional), zapatos antideslizantes, brazalete reflectivo, cinturón de seguridad y alcohol en gel.
 - Se escribe "Alalá" donde las láminas dicen "alala".
 - Lámina 18: "Zapatos de lactancia (sportivos)" se escribió "(deportivos)".
 - Ya no aparecen: casco, chaqueta magenta y bolso térmico del domiciliario; cinturón y maletín del asesor; delantal negro del operario; delantal impermeable e implementos de limpieza de servicios generales; brazo de lactancia; gel antibacterial, protector solar y tapones auditivos de la protección administrativa.
@@ -944,6 +970,8 @@ El modelo de formación empresarial de Alalá Store está diseñado para fortale
 ---
 
 ## 10. Pendientes con Alalá Store
+
+✅ 12 de noviembre de 2026: se da por confirmado todo el contenido que ya está en el sitio. Se quitaron los carteles "Por confirmar" y el contenido temporal de la evaluación de desempeño. Solo faltan los dos links de las evaluaciones.
 
 ### Contenido que falta
 

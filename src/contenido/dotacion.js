@@ -2,7 +2,8 @@
   Manual de dotación.
   Versión oficial: las láminas de "Ultima info" (llegaron el 10 de noviembre de 2026).
   Láminas completas en public/img/dotacion/laminas/NN.webp y recortes en public/img/dotacion/.
-  Lo que esas láminas no cubren sale de la presentación (cajero) y del manual de 24 láminas
+  La lámina 19 (Cajero) llegó el 12 de noviembre de 2026.
+  Lo que esas láminas no cubren sale del manual de 24 láminas
   (domicilios, cuidados, especificaciones, tallas, presentación personal y compromiso),
   sin mostrar las láminas anteriores.
 */
@@ -82,18 +83,7 @@ export const vestuario = {
   ],
 }
 
-/*
-  Cargos. Los que tienen lámina nueva traen la lista de prendas con su recorte.
-  Cajero(a) no tiene lámina nueva: sigue con la presentación (uso correcto e incorrecto).
-*/
-export const noUsarCajero = [
-  'No usar camiseta sucia o con manchas.',
-  'No usar calzado roto, desgastado o con la suela despegada.',
-  'No usar calzado de otras marcas o sin el logo Alalá Store.',
-  'No usar sandalias, chanclas, crocs o calzado abierto.',
-  'No usar tacones, plataformas o calzado no adecuado para nuestras actividades.',
-]
-
+/* Cargos: cada uno con su lámina, la lista de prendas con su recorte y la foto de la persona. */
 export const cargos = [
   {
     id: 'com',
@@ -112,12 +102,24 @@ export const cargos = [
   {
     id: 'caj',
     titulo: 'Cajero(a)',
-    intro:
-      'Como cajero(a), tu presentación refleja orden, confianza y servicio en Alalá Store. Sigue estas indicaciones para brindar la mejor experiencia a nuestros clientes.',
-    correcto: ['Camisa blanca con logo Alalá Store.', 'Carné visible siempre.', 'Jean azul oscuro de corte clásico.', 'Cinturón negro o café.', 'Zapatos cerrados negros antideslizantes.', 'Porta carnet y nombre visible.'],
-    foto: { src: '/img/presentacion/cajeros.webp', alt: 'Cajera y cajero con camisa blanca y carné detrás de la caja de Alalá Store', ancho: 585, alto: 830 },
-    recuerda: 'tu actitud y presentación transmiten la esencia de Alalá Store: cercanía, confianza y alegría en cada atención.',
-    importante: 'el uso inadecuado de tu imagen puede afectar la percepción de nuestra marca y la experiencia de nuestros clientes.',
+    lamina: '19',
+    funciones: [
+      'Atender y asesorar a los clientes.',
+      'Registrar las ventas en el sistema.',
+      'Manejar el dinero con responsabilidad.',
+      'Resolver dudas y brindar un excelente servicio.',
+    ],
+    prendas: [
+      ['cajero/polo', 'Camisa tipo polo'],
+      ['cajero/pantalon', 'Pantalón clásico'],
+      ['cajero/chaqueta', 'Chaqueta (según clima)'],
+    ],
+    grupos: [
+      ['Elementos de trabajo', [['cajero/escaner', 'Escáner'], ['cajero/computador', 'Computador'], ['cajero/caja', 'Caja registradora']]],
+      ['Elementos de seguridad', [['cajero/guantes', 'Guantes'], ['cajero/carne', 'Carné']]],
+    ],
+    recuerda: 'Brinda un servicio amable, maneja el dinero con cuidado y sigue siempre las políticas de la tienda.',
+    foto: { src: recorte('personas/cajero'), alt: 'Cajera con polo blanco de Alalá y carné, sosteniendo un escáner junto al computador', ancho: 495, alto: 710 },
   },
   {
     id: 'dom',
@@ -186,7 +188,7 @@ export const cargos = [
 
 /*
   Elementos de protección por área (láminas 13 a 16).
-  Domicilios no tiene lámina nueva: sale del manual de 24 láminas, sin fotos.
+  Domicilios: lámina "10" de protección para domiciliarios (llegó el 12 de noviembre de 2026), guardada como 10b.
 */
 export const proteccion = [
   {
@@ -261,15 +263,29 @@ export const proteccion = [
   {
     id: 'dmc',
     titulo: 'Domicilios',
-    anterior: ['Casco certificado.', 'Guantes de agarre.', 'Impermeable.', 'Calzado antideslizante.'],
-    recuerda: 'Protección obligatoria para rutas y condiciones climáticas.',
+    lamina: '10b',
+    items: [
+      ['epp-domicilios/gorra', 'Gorra'],
+      ['epp-domicilios/chaqueta', 'Chaqueta reflectiva'],
+      ['epp-domicilios/chaleco', 'Chaleco reflectivo'],
+      ['epp-domicilios/casco', 'Casco (opcional)'],
+      ['epp-domicilios/guantes', 'Guantes de protección'],
+      ['epp-domicilios/tapabocas', 'Tapabocas (opcional)'],
+      ['epp-domicilios/morral', 'Morral de reparto seguro'],
+      ['epp-domicilios/rodilleras', 'Rodilleras (opcional)'],
+      ['epp-domicilios/zapatos', 'Zapatos antideslizantes'],
+      ['epp-domicilios/brazalete', 'Brazalete reflectivo'],
+      ['epp-domicilios/cinturon', 'Cinturón de seguridad'],
+      ['epp-domicilios/alcohol', 'Alcohol en gel'],
+    ],
+    recuerda: 'Usa siempre los elementos de protección para realizar tus domicilios de forma segura.',
   },
 ]
 
 export const cuidados = ['Lava tu uniforme con colores similares.', 'Usa detergentes suaves.', 'No uses blanqueador.', 'Seca a la sombra.', 'Plancha a temperatura media.']
 
 /*
-  [área, camiseta, pantalón, calzado, ¿tela por confirmar?]
+  [área, camiseta, pantalón, calzado]
   Prendas y calzado actualizados con las láminas nuevas; las telas siguen siendo del manual anterior.
 */
 export const especificaciones = [
@@ -278,6 +294,34 @@ export const especificaciones = [
   ['Confección', 'Poliéster 65 %, algodón 35 %', 'Jean azul oscuro (clásico)', 'Zapatos cerrados y cómodos'],
   ['Servicios generales', 'Poliéster 65 %, algodón 35 %', 'Pantalón tipo cargo', 'Zapatos cerrados y cómodos'],
   ['Domiciliario(a)', 'Camiseta blanca con logo; chaqueta negra impermeable en poliéster 100 %', 'Jean azul oscuro resistente', 'Zapatos negros antideslizantes'],
+]
+
+/* Guía de tallas (lámina "Guía de tallas", llegó el 12 de noviembre de 2026). Valores copiados tal cual. */
+export const tallasCamisetas = [
+  ['XS', '64 - 80', '60 - 72'],
+  ['S', '81 - 94', '73 - 78'],
+  ['M', '95 - 100', '79 - 84'],
+  ['L', '101 - 106', '85 - 90'],
+  ['XL', '107 - 112', '91 - 96'],
+  ['XXL', '115 - 118', '97 - 102'],
+]
+
+export const tallasPantalones = [
+  ['6', '68 - 72', '90 - 94'],
+  ['8', '73 - 77', '95 - 99'],
+  ['10', '78 - 82', '100 - 104'],
+  ['12', '83 - 87', '104 - 109'],
+  ['14', '88 - 92', '110 - 114'],
+  ['16', '93 - 97', '115 - 119'],
+]
+
+/* La misma lámina trae este recuadro */
+export const medidaYDespacho = [
+  'Guantes de seguridad.',
+  'Calzado de seguridad.',
+  'Faja lumbar (según la labor).',
+  'Chaleco reflectivo.',
+  'Casco (según el área).',
 ]
 
 export const comoMedirte = [
@@ -318,7 +362,10 @@ export const laminas = [
   ['15', 'Protección: logística y despacho'],
   ['16', 'Protección: servicios generales'],
   ['17', 'Dotación: servicios generales'],
+  ['10b', 'Protección: domicilios'],
   ['18', 'Dotación de maternidad'],
+  ['19', 'Cajero(a)'],
+  ['tallas', 'Guía de tallas'],
 ]
 
 /* Planilla de entrega */

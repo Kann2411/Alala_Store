@@ -35,7 +35,7 @@ export const funciones = [
   'Reportar daños, fallas o situaciones de riesgo.',
 ]
 
-/* [dato, valor, ¿por confirmar?] */
+/* [dato, valor] */
 export const infoCargo = [
   ['Cargo', 'Operaria de confección', false],
   ['Área', 'Confección', true],
@@ -146,7 +146,7 @@ export const situaciones = [
   },
 ]
 
-/* [título, descripción, ¿redacción por revisar?] — ícono en public/img/normas/norma-NN.webp */
+/* [título, descripción] — ícono en public/img/normas/norma-NN.webp */
 export const normas = [
   ['Usa tu uniforme correctamente', 'Usa el uniforme completo y limpio en todo momento.'],
   ['Usa tus EPP', 'Utiliza correctamente los elementos de protección personal asignados.'],

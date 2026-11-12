@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { Pestanas, VisorBoton } from '../componentes/interaccion.jsx'
-import { Confirmar, Datos, ListaCorazon, Portada, Recuerda, Seccion, Temporal, Titulo } from '../componentes/piezas.jsx'
+import { Datos, ListaCorazon, Portada, Recuerda, Seccion, Titulo } from '../componentes/piezas.jsx'
 import * as d from '../contenido/dotacion.js'
 
 /* Rejilla de prendas o elementos, cada uno con su foto recortada de la lámina. */
@@ -26,42 +26,26 @@ function VerLamina({ n, titulo, texto = 'Ver lámina completa' }) {
   )
 }
 
-/* Cajero(a): no tiene lámina nueva, sigue con el formato de la presentación. */
-function CargoPresentacion({ cargo }) {
-  return (
-    <>
-      <p className="entrada">{cargo.intro}</p>
-      <div className="cargo-rejilla">
-        <div>
-          <h3 className="uso-titulo uso-ok">Uso correcto</h3>
-          <ListaCorazon items={cargo.correcto} />
-        </div>
-        <img className="foto-persona" src={cargo.foto.src} alt={cargo.foto.alt} width={cargo.foto.ancho} height={cargo.foto.alto} loading="lazy" />
-        <div>
-          <h3 className="uso-titulo uso-mal">Uso incorrecto</h3>
-          <ul className="uso-no">
-            {d.noUsarCajero.map((texto, i) => (
-              <li key={texto}>
-                <img src={`/img/presentacion/no-${i + 1}.webp`} alt="" width="140" height="140" loading="lazy" />
-                <span>{texto}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <Recuerda titulo="Recuerda:">{cargo.recuerda}</Recuerda>
-      <Recuerda titulo="Importante:">{cargo.importante}</Recuerda>
-    </>
-  )
-}
-
 /* Cargos con lámina nueva: prendas con foto, persona y enlace a la lámina. */
 function CargoLamina({ cargo }) {
   return (
     <>
       <div>
         {cargo.intro && <p className="entrada">{cargo.intro}</p>}
+        {cargo.funciones && (
+          <>
+            <h3 className="uso-titulo uso-ok">Funciones principales</h3>
+            <ListaCorazon items={cargo.funciones} style={{ marginBottom: 18 }} />
+            <h3 className="uso-titulo uso-ok">Dotación</h3>
+          </>
+        )}
         <Elementos items={cargo.prendas} />
+        {cargo.grupos?.map(([titulo, items]) => (
+          <div key={titulo} style={{ marginTop: 18 }}>
+            <h3 className="uso-titulo uso-ok">{titulo}</h3>
+            <Elementos items={items} />
+          </div>
+        ))}
         {cargo.lema && <p style={{ margin: '16px 0 0' }}><strong>{cargo.lema}</strong></p>}
         {cargo.recuerda && <Recuerda titulo="Recuerda:">{cargo.recuerda}</Recuerda>}
         <p style={{ margin: '12px 0 0' }}><VerLamina n={cargo.lamina} titulo={cargo.titulo} /></p>
@@ -72,17 +56,6 @@ function CargoLamina({ cargo }) {
 }
 
 function Proteccion({ area }) {
-  if (area.anterior) {
-    return (
-      <>
-        <p className="entrada">
-          Esta área no tiene lámina nueva. Estos elementos son del manual anterior. <Confirmar>Por confirmar</Confirmar>
-        </p>
-        <ListaCorazon items={area.anterior} />
-        <Recuerda titulo="Importante:">{area.recuerda}</Recuerda>
-      </>
-    )
-  }
   return (
     <>
       {area.intro && <p className="entrada">{area.intro}</p>}
@@ -97,8 +70,8 @@ export default function Dotacion() {
   const pestanasCargos = d.cargos.map((cargo) => ({
     id: cargo.id,
     titulo: cargo.titulo,
-    panelClassName: cargo.prendas ? 'tarjeta cargo-lamina' : 'tarjeta cargo',
-    contenido: cargo.prendas ? <CargoLamina cargo={cargo} /> : <CargoPresentacion cargo={cargo} />,
+    panelClassName: 'tarjeta cargo-lamina',
+    contenido: <CargoLamina cargo={cargo} />,
   }))
 
   const pestanasProteccion = d.proteccion.map((area) => ({
@@ -222,17 +195,17 @@ export default function Dotacion() {
       </Seccion>
 
       <Seccion suave>
-        <Titulo extra={<Confirmar />}>Especificaciones de prendas por área</Titulo>
+        <Titulo>Especificaciones de prendas por área</Titulo>
         <div className="tabla-marco">
           <table>
             <thead>
               <tr><th scope="col">Área</th><th scope="col">Camiseta</th><th scope="col">Pantalón</th><th scope="col">Calzado</th></tr>
             </thead>
             <tbody>
-              {d.especificaciones.map(([area, camiseta, pantalon, calzado, telaPorConfirmar]) => (
+              {d.especificaciones.map(([area, camiseta, pantalon, calzado]) => (
                 <tr key={area}>
                   <th scope="row">{area}</th>
-                  <td>{camiseta} {telaPorConfirmar && <Confirmar>Tela por confirmar</Confirmar>}</td>
+                  <td>{camiseta}</td>
                   <td>{pantalon}</td>
                   <td>{calzado}</td>
                 </tr>
@@ -244,16 +217,50 @@ export default function Dotacion() {
 
       <Seccion>
         <Titulo>Guía de tallas</Titulo>
-        <div className="rejilla rejilla-2">
+        <p className="entrada">Encuentra tu talla perfecta.</p>
+        <div className="tallas">
           <div>
-            <h3>Cómo medirte</h3>
-            <Datos items={d.comoMedirte} style={{ margin: '8px 0 16px' }} />
-            <p>Las medidas son aproximadas y pueden variar según el tipo de prenda.</p>
+            <h3 style={{ marginBottom: 10 }}>Camisetas / blusas</h3>
+            <div className="tabla-marco">
+              <table>
+                <thead>
+                  <tr><th scope="col">Talla</th><th scope="col">Busto (cm)</th><th scope="col">Cintura (cm, referencia)</th></tr>
+                </thead>
+                <tbody>
+                  {d.tallasCamisetas.map(([talla, busto, cintura]) => (
+                    <tr key={talla}><th scope="row">{talla}</th><td>{busto}</td><td>{cintura}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <h3 style={{ margin: '22px 0 10px' }}>Pantalones</h3>
+            <div className="tabla-marco">
+              <table>
+                <thead>
+                  <tr><th scope="col">Talla</th><th scope="col">Cintura (cm)</th><th scope="col">Cadera (cm)</th></tr>
+                </thead>
+                <tbody>
+                  {d.tallasPantalones.map(([talla, cintura, cadera]) => (
+                    <tr key={talla}><th scope="row">{talla}</th><td>{cintura}</td><td>{cadera}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <Temporal titulo="Tabla de medidas">
-            La imagen disponible no permite leer las medidas con seguridad. La tabla se publicará cuando llegue el documento original.
-          </Temporal>
+          <figure className="tallas-medir">
+            <img src={d.recorte('personas/medidas')} alt="Silueta con líneas en busto, cintura y cadera: busto y cadera se miden en la parte más amplia, cintura en la más estrecha" width="397" height="657" loading="lazy" />
+            <figcaption>
+              <h3>Cómo medirte</h3>
+              <Datos items={d.comoMedirte} />
+            </figcaption>
+          </figure>
         </div>
+        <Recuerda titulo="Recuerda:">las medidas son aproximadas y pueden variar según el tipo de prenda.</Recuerda>
+        <article className="tarjeta" style={{ marginTop: 18 }}>
+          <h3 style={{ marginBottom: 10 }}>Área de medida y despacho</h3>
+          <ListaCorazon items={d.medidaYDespacho} />
+        </article>
+        <p style={{ margin: '12px 0 0' }}><VerLamina n="tallas" titulo="Guía de tallas" /></p>
       </Seccion>
 
       <Seccion suave>

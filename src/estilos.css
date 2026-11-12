@@ -418,3 +418,20 @@ tbody th { background: var(--panel); color: var(--vino); }
 .producto-categoria { font: 800 .75rem var(--titulos); letter-spacing: .08em; text-transform: uppercase; color: var(--magenta-oscuro); }
 .producto-nombre { font: 700 .9688rem/1.3 var(--titulos); color: var(--vino); }
 .producto-ref { font-size: .875rem; color: var(--texto-suave); }
+
+/* Guía de tallas */
+.tallas { display: grid; gap: 24px; align-items: start; }
+@media (min-width: 860px) { .tallas { grid-template-columns: 1.4fr 1fr; } }
+.tallas th, .tallas td { text-align: center; }
+.tallas-medir { margin: 0; display: grid; gap: 14px; justify-items: center; }
+.tallas-medir img { width: 100%; max-width: 300px; height: auto; }
+.tallas-medir figcaption { width: 100%; }
+
+/* Dos láminas una al lado de la otra; las columnas siguen la proporción de cada imagen para que queden de la misma altura */
+.par-laminas { display: grid; gap: 20px; align-items: start; }
+@media (min-width: 760px) { .par-laminas { grid-template-columns: 2.25fr 1fr; } }
+.par-laminas figure { margin: 0; }
+.lamina-boton { display: block; width: 100%; padding: 0; border: 1px solid var(--borde); border-radius: var(--radio); overflow: hidden; background: #fff; cursor: zoom-in; box-shadow: var(--sombra); transition: transform .15s, border-color .15s; }
+.lamina-boton:hover { transform: translateY(-2px); border-color: var(--magenta); }
+.lamina-boton img { width: 100%; height: auto; }
+.par-laminas figcaption { margin-top: 10px; text-align: center; font: 800 1rem var(--titulos); color: var(--vino); }

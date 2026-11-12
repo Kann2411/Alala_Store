@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { IndiceLateral, VisorBoton } from '../componentes/interaccion.jsx'
-import { Confirmar, Datos, ListaCorazon, Portada, Recuerda } from '../componentes/piezas.jsx'
+import { Datos, ListaCorazon, Portada, Recuerda, Separador } from '../componentes/piezas.jsx'
 import * as c from '../contenido/induccion.js'
 
 /* Bloque de un tema, con su título numerado y, si tiene, una foto a la derecha. */
@@ -50,7 +50,7 @@ export default function InduccionEspecifica() {
         </p>
         <div className="botones">
           <a className="boton" href="#objetivo">Empezar</a>
-          <VisorBoton className="boton boton-sec" src="/img/laminas/lamina-02.webp" titulo="Agenda de inducción: Operaria de confección">
+          <VisorBoton className="boton boton-sec" src="/img/induccion/agenda.webp" titulo="Agenda de inducción: Operaria de confección">
             Ver agenda completa
           </VisorBoton>
         </div>
@@ -82,7 +82,7 @@ export default function InduccionEspecifica() {
                 <h2 className="titulo-num"><b>04.</b> Información del cargo</h2>
                 <Datos
                   style={{ margin: '14px 0 0' }}
-                  items={c.infoCargo.map(([dato, valor, confirmar]) => [dato, confirmar ? <>{valor} <Confirmar /></> : valor])}
+                  items={c.infoCargo.map(([dato, valor]) => [dato, valor])}
                 />
               </div>
               <img src="/img/fotos/bolso.webp" alt="Bolso de mano magenta con broche dorado" width="305" height="320" loading="lazy" />
@@ -115,7 +115,7 @@ export default function InduccionEspecifica() {
             id="epp"
             numero="07"
             titulo="Elementos de protección personal"
-            entrada={<>Usar correctamente los elementos de protección personal es fundamental para tu seguridad. Son tu mejor protección. <Confirmar>Lista por confirmar</Confirmar></>}
+            entrada={<>Usar correctamente los elementos de protección personal es fundamental para tu seguridad. Son tu mejor protección.</>}
             foto={{ src: '/img/fotos/operaria-2.webp', alt: 'Operaria cosiendo con su delantal de Alalá Store', ancho: 527, alto: 474 }}
           >
             <TarjetasFoto carpeta="epp" items={c.epp} className="rejilla rejilla-4" />
@@ -147,12 +147,12 @@ export default function InduccionEspecifica() {
             foto={{ src: '/img/fotos/operaria-3.webp', alt: 'Operaria cosiendo en el área de confección', ancho: 529, alto: 473 }}
           >
             <div className="rejilla rejilla-2">
-              {c.normas.map(([titulo, texto, revisar], i) => (
+              {c.normas.map(([titulo, texto], i) => (
                 <article className="tarjeta norma" key={titulo}>
                   <img src={`/img/normas/norma-${String(i + 1).padStart(2, '0')}.webp`} alt="" width="112" height="112" loading="lazy" />
                   <div>
                     <h3>{i + 1}. {titulo}</h3>
-                    <p>{texto} {revisar && <Confirmar>Redacción por revisar</Confirmar>}</p>
+                    <p>{texto}</p>
                   </div>
                 </article>
               ))}
@@ -203,7 +203,7 @@ export default function InduccionEspecifica() {
           </section>
 
           <section className="bloque" id="agenda">
-            <h2 className="titulo">Agenda del día de inducción <Confirmar /></h2>
+            <h2 className="titulo">Agenda del día de inducción</h2>
             <p style={{ marginTop: 10 }}>
               Los documentos traen dos versiones: esta agenda de un día y un <Link to="/bienestar#induccion">cronograma de una semana</Link>.
             </p>
@@ -219,6 +219,28 @@ export default function InduccionEspecifica() {
           </section>
         </div>
       </div>
+
+      <section className="seccion seccion-suave" id="agenda-cronograma">
+        <div className="contenedor">
+          <h2 className="titulo">Agenda y cronograma de la inducción</h2>
+          <Separador />
+          <p className="entrada">Toca cada imagen para verla en grande.</p>
+          <div className="par-laminas">
+            <figure>
+              <VisorBoton className="lamina-boton" src="/img/induccion/cronograma.webp" titulo="Cronograma de inducción específica: primera semana" aria-label="Ampliar el cronograma de la primera semana">
+                <img src="/img/induccion/cronograma.webp" alt="" width="614" height="410" loading="lazy" />
+              </VisorBoton>
+              <figcaption>Cronograma de la primera semana</figcaption>
+            </figure>
+            <figure>
+              <VisorBoton className="lamina-boton" src="/img/induccion/agenda.webp" titulo="Agenda de inducción: Operaria de confección" aria-label="Ampliar la agenda del primer día">
+                <img src="/img/induccion/agenda.webp" alt="" width="704" height="1056" loading="lazy" />
+              </VisorBoton>
+              <figcaption>Agenda del primer día</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
