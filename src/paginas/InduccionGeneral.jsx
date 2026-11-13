@@ -146,8 +146,12 @@ export default function InduccionGeneral() {
           <div>
             <h2>Evaluación de inducción general</h2>
             <p>Cuando termines la inducción, presenta la evaluación en la app externa.</p>
+            <p style={{ marginTop: 8 }}>También puedes escanear el código QR con tu celular.</p>
           </div>
-          <BotonEvaluacion cual="induccionGeneral" />
+          <div className="evaluacion-acciones">
+            <BotonEvaluacion cual="induccionGeneral" />
+            <img className="qr" src="/img/qr-induccion-general.png" alt="Código QR que abre la evaluación de inducción general" width="512" height="512" loading="lazy" />
+          </div>
         </div>
       </Seccion>
     </>

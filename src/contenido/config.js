@@ -3,7 +3,7 @@
   Cuando lleguen los links de las evaluaciones, se pegan aquí y los botones empiezan a funcionar.
 */
 export const evaluaciones = {
-  induccionGeneral: '', // Pendiente: link de la evaluación de inducción general
+  induccionGeneral: 'https://pdf-to-quiz.com/s/bTWboSXq', // Quiz en Quizify
   desempeno: '', // Pendiente: link de la app de evaluación de desempeño
 }
 
