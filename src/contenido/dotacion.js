@@ -196,9 +196,6 @@ export const proteccion = [
     titulo: 'Administrativa',
     lamina: '13',
     items: [
-      ['epp-admin/guantes', 'Guantes anticorte'],
-      ['epp-admin/dedal', 'Dedal protector'],
-      ['epp-admin/gafas', 'Gafas de seguridad'],
       ['epp-admin/tapabocas', 'Tapabocas (opcional)'],
       ['epp-admin/alcohol', 'Alcohol en gel'],
       ['epp-admin/botella', 'Botella personal'],
